@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import ArticleCard from '../components/ArticleCard';
 
 export async function getStaticProps() {
   const client = createClient({
@@ -20,8 +21,7 @@ export default function Home({ articles }) {
     <div>
       <h1>Blog</h1>
       {articles.map((article) => {
-        console.log(article);
-        // <ArticleCard key={article.sys.id} article={article} />;
+        return <ArticleCard key={article.sys.id} article={article.fields} />;
       })}
     </div>
   );
