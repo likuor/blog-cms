@@ -1,11 +1,7 @@
 import { client } from '../../libs/client';
-import Link from 'next/link';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
-const myLoader = ({ src, width, quality }) => {
-  return `https:${src}?w=${width}&q=${quality || 100}`;
-};
+import { myLoader } from '../../helper/Helper';
 
 export const getStaticPaths = async () => {
   const res = await client.getEntries({ content_type: 'blogPost' });
@@ -38,7 +34,6 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const ArticleSlug = ({ article }) => {
-  console.log(article);
   return (
     <div>
       <div>
@@ -47,7 +42,7 @@ const ArticleSlug = ({ article }) => {
           alt={article.fields.heroImage.fields.description}
           src={article.fields.heroImage.fields.file.url}
           width={500}
-          height={500}
+          height={300}
           // width={article.heroImage.fields.file.details.image.width}
           // height={article.heroImage.fields.file.details.image.height}
           priority
